@@ -5,7 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from dcim.models import Device, Interface
 from extras.choices import ChangeActionChoices as ObjectChangeActionChoices
 from netbox.plugins.utils import get_plugin_config
-from extras.models import ObjectChange
+
+# from extras.models import ObjectChange
+from change_logging.models import ObjectChange
 from ipam.models import IPAddress
 from virtualization.models import VirtualMachine, VMInterface
 
