@@ -1,4 +1,4 @@
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 from .version import __version__
 
 
@@ -20,5 +20,6 @@ class NetBoxPowerdnsSyncConfig(PluginConfig):
     def ready(self):
         super().ready()
         import netbox_powerdns_sync.signals
+
 
 config = NetBoxPowerdnsSyncConfig

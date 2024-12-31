@@ -4,7 +4,7 @@ from powerdns import Comment, RRSet
 from django.contrib.contenttypes.models import ContentType
 from dcim.models import Device, Interface
 from extras.choices import ObjectChangeActionChoices
-from extras.plugins.utils import get_plugin_config
+from netbox.plugins.utils import get_plugin_config
 from extras.models import ObjectChange
 from ipam.models import IPAddress
 from virtualization.models import VirtualMachine, VMInterface
@@ -12,7 +12,7 @@ from virtualization.models import VirtualMachine, VMInterface
 from .constants import PLUGIN_NAME, FAMILY_TYPES, PTR_TYPE, PTR_ZONE_SUFFIXES
 
 
-def get_ip_host(ip:IPAddress) -> Device|VirtualMachine|None:
+def get_ip_host(ip: IPAddress) -> Device | VirtualMachine | None:
     """
     If IPAddress is assigned to Interface or VMInterface return Device
     or VirtualMachine
@@ -24,7 +24,7 @@ def get_ip_host(ip:IPAddress) -> Device|VirtualMachine|None:
     return None
 
 
-def get_ip_ttl(ip: IPAddress) -> int|None:
+def get_ip_ttl(ip: IPAddress) -> int | None:
     """
     Get TTL from IPAddress custom field if set. Else None.
     """
@@ -39,7 +39,7 @@ def get_ip_ttl(ip: IPAddress) -> int|None:
     return ttl
 
 
-def can_manage_record(record: dict|RRSet) -> bool:
+def can_manage_record(record: dict | RRSet) -> bool:
     """
     Check if record from powerdns is of supported type and if using comments,
     check if it's correct
@@ -68,7 +68,7 @@ def get_managed_comment() -> list:
 
 
 def make_canonical(name: str) -> str:
-    """ Ensure string ends with a dot """
+    """Ensure string ends with a dot"""
     if name[-1] != ".":
         name = name + "."
     return name
@@ -87,7 +87,7 @@ def make_dns_label(name: str) -> str:
     return re.sub(r"[_\.\/\-\s]+", "-", name).strip("-_")
 
 
-def is_reverse(name:str) -> bool:
+def is_reverse(name: str) -> bool:
     return any(map(lambda s: name.endswith(s), PTR_ZONE_SUFFIXES))
 
 

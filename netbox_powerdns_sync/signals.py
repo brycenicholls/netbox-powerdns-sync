@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 from core.models import Job
 from dcim.models import Device, Interface
-from extras.plugins.utils import get_plugin_config
+from netbox.plugins.utils import get_plugin_config
 from ipam.models import IPAddress, FHRPGroup
 from netbox.context import current_request
 from virtualization.models import VirtualMachine, VMInterface
@@ -25,9 +25,7 @@ IPADDRESS_DNS_FIELDS = (
     "assigned_object_type",
 )
 
-INTERFACE_DNS_FIELDS = (
-    "name",
-)
+INTERFACE_DNS_FIELDS = ("name",)
 
 DEVICE_DNS_FIELDS = (
     "name",
